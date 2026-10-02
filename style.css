@@ -1,0 +1,21 @@
+/* Estilo geral da página: fonte e cor de fundo */
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+/* Caixa branca centralizada que guarda o conteúdo */
+.container {
+    width: 400px;
+    margin: 50px auto;   /* 50px em cima/baixo e centralizada na horizontal */
+    padding: 25px;
+    background: white;
+    border-radius: 10px; /* Cantos arredondados */
+}
+
+/* Campos de texto ocupam toda a largura da caixa */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
