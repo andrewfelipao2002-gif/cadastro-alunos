@@ -1,4 +1,4 @@
-﻿// Pega o formulário pelo id
+// Pega o formulário pelo id
 const form = document.getElementById("formAluno");
 
 // Pega a lista (<ul>) onde os alunos vão aparecer
@@ -92,13 +92,18 @@ form.addEventListener("submit", async function(event) {
     // Converte a resposta do servidor em objeto JavaScript
     const dados = await resposta.json();
 
-    // Mostra a mensagem do servidor em um alerta
+      // Mostra a mensagem do servidor em um alerta (sucesso ou erro)
     alert(dados.mensagem);
+
+    // resposta.ok é falso quando o servidor devolve erro (ex.: 400)
+    if (!resposta.ok) {
+        return;   // Sai sem limpar o formulário, para a pessoa corrigir
+    }
 
     // Recarrega a lista do servidor, já com o aluno novo
     carregarAlunos();
 
-    // Limpa os campos do formulário
+    // Limpa os campos do formulário só quando o cadastro deu certo
     form.reset();
 });
 
