@@ -1,8 +1,14 @@
-// Pega o formulário pelo id
+﻿// Pega o formulário pelo id
 const form = document.getElementById("formAluno");
 
 // Pega a lista (<ul>) onde os alunos vão aparecer
 const lista = document.getElementById("listaAlunos");
+
+// Pega o campo de busca pelo id
+const busca = document.getElementById("busca");
+
+// Guarda todos os alunos recebidos do servidor (a busca filtra esta cópia)
+let todosAlunos = [];
 
 // Cria um <li> com os dados do aluno e um botão "Excluir"
 function mostrarAluno(aluno) {
@@ -26,13 +32,25 @@ function mostrarAluno(aluno) {
     lista.appendChild(item);
 }
 
+// Mostra na tela só os alunos cujo nome contém o texto da busca
+function mostrarLista() {
+    // Texto digitado, em minúsculas e sem espaços nas pontas
+    const textoBusca = busca.value.toLowerCase().trim();
+
+    // Mantém só os alunos cujo nome contém o texto
+    const filtrados = todosAlunos.filter(function(aluno) {
+        return aluno.nome.toLowerCase().includes(textoBusca);
+    });
+
+    lista.innerHTML = "";            // Limpa a lista antes de preencher
+    filtrados.forEach(mostrarAluno); // Mostra cada aluno filtrado
+}
+
 // Pede ao servidor todos os alunos cadastrados e mostra na tela
 async function carregarAlunos() {
     const resposta = await fetch("/alunos");   // Requisição GET
-    const alunos = await resposta.json();      // Converte o JSON em array
-
-    lista.innerHTML = "";                      // Limpa a lista antes de preencher
-    alunos.forEach(mostrarAluno);              // Mostra cada aluno
+    todosAlunos = await resposta.json();       // Guarda o array recebido
+    mostrarLista();                            // Mostra respeitando a busca
 }
 
 // Pede ao servidor para excluir o aluno e atualiza a lista
@@ -77,12 +95,15 @@ form.addEventListener("submit", async function(event) {
     // Mostra a mensagem do servidor em um alerta
     alert(dados.mensagem);
 
-    // Mostra na lista o aluno que o servidor devolveu
-    mostrarAluno(dados.aluno);
+    // Recarrega a lista do servidor, já com o aluno novo
+    carregarAlunos();
 
     // Limpa os campos do formulário
     form.reset();
 });
+
+// A cada letra digitada na busca, atualiza a lista
+busca.addEventListener("input", mostrarLista);
 
 // Ao abrir a página, carrega os alunos que já estão no servidor
 carregarAlunos();
