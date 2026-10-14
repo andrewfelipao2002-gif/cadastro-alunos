@@ -44,4 +44,53 @@ input:focus {
     border-color: #3498db;
 }
 
-/* Botão azul, de largura
+/* Botão azul, de largura total */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #3498db;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;           /* Mãozinha ao passar o mouse */
+}
+
+/* Botão fica mais escuro ao passar o mouse */
+button:hover {
+    background: #2980b9;
+}
+
+/* Lista sem marcadores */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Cada aluno vira um cartão: texto à esquerda e botão à direita */
+li {
+    display: flex;
+    justify-content: space-between;  /* Afasta o texto e o botão */
+    align-items: center;             /* Alinha os dois na vertical */
+    gap: 10px;
+    margin: 8px 0;
+    padding: 10px;
+    background: #f7f9fb;
+    border-left: 4px solid #3498db;  /* Faixa azul na lateral */
+    border-radius: 4px;
+}
+
+/* Botão Excluir: vermelho e pequeno, sem a largura total do botão Cadastrar */
+.btn-excluir {
+    width: auto;
+    margin-top: 0;
+    padding: 6px 12px;
+    background: #e74c3c;
+    font-size: 14px;
+}
+
+/* Fica mais escuro ao passar o mouse */
+.btn-excluir:hover {
+    background: #c0392b;
+}
