@@ -17,10 +17,13 @@ const alunos = [];
 app.post("/alunos", (req, res) => {
 
     // Pega nome e idade que vieram no corpo da requisição
-    const aluno = {
-        nome: req.body.nome,
-        idade: req.body.idade
-    };
+    // Pega os 4 dados que vieram no corpo da requisição
+      const aluno = {
+      nome: req.body.nome,
+      idade: req.body.idade,
+     email: req.body.email,
+     curso: req.body.curso
+};
 
     // Guarda o aluno no array
     alunos.push(aluno);
