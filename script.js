@@ -10,9 +10,12 @@ form.addEventListener("submit", async function(event) {
     // Impede a página de recarregar ao enviar o formulário
     event.preventDefault();
 
-    // Lê o que foi digitado nos campos
-    const nome = document.getElementById("nome").value;
-    const idade = document.getElementById("idade").value;
+    
+    // Lê o que foi digitado em cada campo do formulário
+const nome = document.getElementById("nome").value;
+const idade = document.getElementById("idade").value;
+const email = document.getElementById("email").value;
+const curso = document.getElementById("curso").value;
 
     // Envia os dados para o servidor no formato JSON
     const resposta = await fetch("/alunos", {
@@ -20,10 +23,13 @@ form.addEventListener("submit", async function(event) {
         headers: {
             "Content-Type": "application/json" // Avisa que o corpo é JSON
         },
-        body: JSON.stringify({
-            nome: nome,
-            idade: idade
-        })
+        // Converte os 4 campos para JSON e envia ao servidor
+         body: JSON.stringify({
+         nome: nome,
+         idade: idade,
+          email: email,
+         curso: curso
+})
     });
 
     // Converte a resposta do servidor em objeto JavaScript
@@ -36,7 +42,7 @@ form.addEventListener("submit", async function(event) {
     const aluno = document.createElement("li");
 
     // Coloca nome e idade dentro do <li>
-    aluno.textContent = `${nome} - ${idade} anos`;
+    aluno.textContent = `${nome} - ${idade} anos - ${email} - ${curso}`;
 
     // Adiciona o aluno na lista da página
     lista.appendChild(aluno);
