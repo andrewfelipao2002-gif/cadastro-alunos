@@ -1,16 +1,31 @@
 /* Estilo geral da página: fonte e cor de fundo */
 body {
     font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    background: #eef1f5;
 }
 
 /* Caixa branca centralizada que guarda o conteúdo */
 .container {
-    width: 400px;
-    margin: 50px auto;   /* 50px em cima/baixo e centralizada na horizontal */
+    width: 100%;
+    max-width: 450px;          /* Nunca passa de 450px, mas encolhe no celular */
+    margin: 50px auto;         /* Centraliza na horizontal */
     padding: 25px;
     background: white;
-    border-radius: 10px; /* Cantos arredondados */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    box-sizing: border-box;
+}
+
+/* Título principal */
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Subtítulo da lista */
+h2 {
+    color: #2c3e50;
+    margin-top: 30px;
 }
 
 /* Campos de texto ocupam toda a largura da caixa */
@@ -18,4 +33,15 @@ input {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
+    box-sizing: border-box;    /* Faz o padding não estourar a largura */
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
+
+/* Destaca o campo que está sendo preenchido */
+input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* Botão azul, de largura
